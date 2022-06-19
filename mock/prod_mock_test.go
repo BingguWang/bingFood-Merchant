@@ -1,13 +1,15 @@
 package mock
 
 import (
-    "fmt"
-    "io/ioutil"
-    "log"
-    "net/http"
-    "strconv"
-    "strings"
-    "testing"
+	"bingFood-Merchant/entity/prod/req"
+	"bingFood-Merchant/utils"
+	"fmt"
+	"io/ioutil"
+	"log"
+	"net/http"
+	"strconv"
+	"strings"
+	"testing"
 )
 
 var prodReq = `{
@@ -57,33 +59,36 @@ var prodReq = `{
     "shopId": %v
 }`
 
-
 func TestProd(t *testing.T) {
-    for i := 1; i < 4; i++ {
-        shopId := i
-        req := fmt.Sprintf(prodReq, shopId, shopId, shopId, strconv.Itoa(shopId), strconv.Itoa(shopId), shopId)
-        PostWithData(req)
-    }
+	for i := 1; i < 4; i++ {
+		shopId := i
+		req := fmt.Sprintf(prodReq, shopId, shopId, shopId, strconv.Itoa(shopId), strconv.Itoa(shopId), shopId)
+		PostWithData(req)
+	}
 }
 
 func PostWithData(data string) {
-    client := &http.Client{}
-    var d = strings.NewReader(data)
-    req, err := http.NewRequest("POST", HostPort+"/shop/prod/add", d)
-    fmt.Println(data)
-    if err != nil {
-        log.Fatal(err)
-    }
-    req.Header.Add("Content-Type", "application/json")
+	client := &http.Client{}
+	var d = strings.NewReader(data)
+	req, err := http.NewRequest("POST", HostPort+"/shop/prod/add", d)
+	fmt.Println(data)
+	if err != nil {
+		log.Fatal(err)
+	}
+	req.Header.Add("Content-Type", "application/json")
 
-    resp, err := client.Do(req)
-    if err != nil {
-        log.Fatal(err)
-    }
-    defer resp.Body.Close()
-    bodyText, err := ioutil.ReadAll(resp.Body)
-    if err != nil {
-        log.Fatal(err)
-    }
-    fmt.Printf("%s\n", bodyText)
+	resp, err := client.Do(req)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer resp.Body.Close()
+	bodyText, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Printf("%s\n", bodyText)
+}
+
+func TestList(t *testing.T) {
+	fmt.Println(utils.ToJsonString(req.ListProdReq{}))
 }
