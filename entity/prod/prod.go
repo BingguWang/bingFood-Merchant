@@ -5,17 +5,17 @@ import (
 )
 
 type Prod struct {
-	ProdId         uint64 `json:"prodId" gorm:"column:prod_id;primary_key;` // 商品id
-	ProdName       string `json:"prodName"`                                 // 商品名称
-	ShopId         int    `json:"shopId"`                                   //  店铺id
-	OriPrice       int    `json:"oriPrice"`                                 // 原价
-	PackingFee     int    `json:"packingFee"`                               // 打包费
-	Price          int    `json:"price"`                                    // 现价
-	Pic            string `json:"pic"`                                      // 商品主图
-	Imgs           string `json:"imags"`                                    // 商品图片,分割
-	Description    string `json:"description"`                              // 简要描述,卖点等
-	Content        string `json:"content"`                                  // 套餐内容
-	ProdStatus     uint8  `json:"prodStatus"`                               // 默认是1示正常状态, -1表示删除, 0下架
+	ProdId         uint64 `json:"prodId" gorm:"column:prod_id;primaryKey;` // 商品id
+	ProdName       string `json:"prodName"`                                // 商品名称
+	ShopId         int    `json:"shopId"`                                  //  店铺id
+	OriPrice       int    `json:"oriPrice"`                                // 原价
+	PackingFee     int    `json:"packingFee"`                              // 打包费
+	Price          int    `json:"price"`                                   // 现价
+	Pic            string `json:"pic"`                                     // 商品主图
+	Imgs           string `json:"imags"`                                   // 商品图片,分割
+	Description    string `json:"description"`                             // 简要描述,卖点等
+	Content        string `json:"content"`                                 // 套餐内容
+	ProdStatus     uint8  `json:"prodStatus"`                              // 默认是1示正常状态, -1表示删除, 0下架
 	IsAutoAdd      uint8  // 默认是0，是否自动补充库存，即库存是否无限制 0不是 1 是
 	SoldHistoryNum int    `json:"soldHistoryNum"` // 销量
 	SoldMonthNum   int    `json:"soldMonthNum"`   // 月销量

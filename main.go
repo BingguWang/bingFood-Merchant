@@ -1,24 +1,24 @@
 package main
 
 import (
-    "log"
+	"log"
 
-    "bingFood-Merchant/initialize"
-    "bingFood-Merchant/router"
+	"bingFood-Merchant/initialize"
+	"bingFood-Merchant/router"
 
-    "github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin"
 )
 
 var r *gin.Engine
 
 func init() {
-    r = router.SetupRouter()
-    initialize.Viper()
-    initialize.MySql()
-    initialize.Redis()
+	r = router.SetupRouter()
+	initialize.Viper()
+	initialize.MySql()
+	initialize.Redis()
 }
 func main() {
-    if err := r.Run(":8088"); err != nil {
-        log.Fatal(err)
-    }
+	if err := r.Run(":8089"); err != nil {
+		log.Fatal(err)
+	}
 }
